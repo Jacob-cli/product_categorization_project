@@ -1,0 +1,56 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.so
+*.log
+
+# IDE/project files
+.idea/
+.vscode/
+*.iml
+
+# Model weights / checkpoints
+*.pt
+*.pth
+*.ckpt
+*.bin
+
+# HF dataset cache & arrow files
+*.arrow
+*.jsonl
+*.zip
+*.tar.gz
+
+# Local library builds
+*.lib
+*.dll
+
+# Data files
+data/
+outputs/
+dataset/
+*.csv
+*.tsv
+*.xlsx
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+
+# Dataset
+data/
+
+# Python environment
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+
+logs/
+
