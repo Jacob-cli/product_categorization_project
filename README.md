@@ -14,7 +14,7 @@ The primary objective of this research is to conduct a comparative study on the 
 * **Interactive Interface**: A Streamlit-based web application for real-time product categorization inference, demonstrating practical applicability.
 
 ### 1.3. Dataset
-* **Source**: A curated subset of the Myntra Fashion Products dataset, derived from an original CSV containing 44,424 entries. link: [text](https://www.kaggle.com/datasets/paramaggarwal/fashion-product-images-small)
+* **Source**: A curated subset of the Myntra Fashion Products dataset, derived from an original CSV containing 44,424 entries. link: [kaggle](https://www.kaggle.com/datasets/paramaggarwal/fashion-product-images-small)
 * **Selected Categories**: Five major product categories were chosen for fine-grained classification: `Accessories`, `Apparel`, `Footwear`, `Free Items`, and `Personal Care`.
 * **Balancing and Augmentation**: To address class imbalance and enhance model generalization, the dataset was balanced to contain 600 samples per class, resulting in a total of 3,000 images. This involved oversampling minority classes (e.g., 'Free Items' from 105 to 600 samples) and undersampling majority classes where necessary.
 * **Splitting**: The balanced dataset was split into training and validation sets with an 80/20 ratio (2400 training samples, 600 validation samples). Stratified splitting was employed to maintain class distribution across splits.
