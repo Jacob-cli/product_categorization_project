@@ -73,10 +73,9 @@ To set up the environment and install necessary dependencies, follow these steps
 ### 3.2. Installation Steps
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/your-username/your-repository-name.git](https://github.com/your-username/your-repository-name.git)
-    cd your-repository-name
+    git clone [https://github.com/Jacob-cli/product_categorization_project.git](https://github.com/Jacob-cli/product_categorization_project.git)
+    cd Jacob-cli
     ```
-    (Replace `your-username/your-repository-name.git` with your actual repository URL)
 
 2.  **Create a virtual environment (recommended):**
     ```bash
