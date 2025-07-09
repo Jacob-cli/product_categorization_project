@@ -1,0 +1,2695 @@
+{
+  "config": {
+    "model_name": "CLIPForImageClassification",
+    "base_model_id": "openai/clip-vit-base-patch32",
+    "num_classes": 5,
+    "batch_size": 8,
+    "epochs": 10,
+    "learning_rate": 2e-05,
+    "device": "cpu",
+    "class_mapping": {
+      "Accessories": 0,
+      "Apparel": 1,
+      "Footwear": 2,
+      "Free Items": 3,
+      "Personal Care": 4
+    },
+    "dataset_info": {
+      "total_original_csv_entries": 44424,
+      "selected_categories_original_counts": {
+        "Accessories": 11274,
+        "Apparel": 21397,
+        "Footwear": 9219,
+        "Free Items": 105,
+        "Personal Care": 2403
+      },
+      "target_samples_per_class": 600,
+      "total_samples_after_augmentation": 3000,
+      "training_samples": 2400,
+      "validation_samples": 600,
+      "augmentation_applied": {
+        "Apparel": {
+          "original": 21397,
+          "augmented_added": 0,
+          "total_after_aug": 600
+        },
+        "Accessories": {
+          "original": 11274,
+          "augmented_added": 0,
+          "total_after_aug": 600
+        },
+        "Footwear": {
+          "original": 9219,
+          "augmented_added": 0,
+          "total_after_aug": 600
+        },
+        "Personal Care": {
+          "original": 2403,
+          "augmented_added": 0,
+          "total_after_aug": 600
+        },
+        "Free Items": {
+          "original": 105,
+          "augmented_added": 495,
+          "total_after_aug": 600
+        }
+      }
+    },
+    "ethical_considerations": {
+      "balanced_sampling": true,
+      "stratified_split": true,
+      "data_augmentation_for_imbalance": true,
+      "fairness_metrics_tracked": true
+    },
+    "data_augmentation_transforms": "Compose(\n    RandomResizedCrop(size=(224, 224), scale=(0.8, 1.0), ratio=(0.75, 1.3333), interpolation=bilinear, antialias=True)\n    RandomHorizontalFlip(p=0.5)\n    ColorJitter(brightness=(0.8, 1.2), contrast=(0.8, 1.2), saturation=(0.8, 1.2), hue=(-0.1, 0.1))\n    RandomRotation(degrees=[-15.0, 15.0], interpolation=nearest, expand=False, fill=0)\n)"
+  },
+  "training": [
+    {
+      "epoch": 0,
+      "train": {
+        "loss": 0.42033388268357763,
+        "overall_accuracy": 0.8716666666666667,
+        "macro_precision": 0.8725618615951711,
+        "macro_recall": 0.869863757353024,
+        "macro_f1": 0.8703046279052978,
+        "weighted_precision": 0.8734685838012931,
+        "weighted_recall": 0.8716666666666667,
+        "weighted_f1": 0.8716926757400741,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.7494780793319415,
+            "recall": 0.775377969762419,
+            "f1-score": 0.7622080679405521,
+            "support": 463.0
+          },
+          "Apparel": {
+            "precision": 0.9224652087475149,
+            "recall": 0.9115913555992141,
+            "f1-score": 0.9169960474308301,
+            "support": 509.0
+          },
+          "Footwear": {
+            "precision": 0.903921568627451,
+            "recall": 0.9584199584199584,
+            "f1-score": 0.9303733602421796,
+            "support": 481.0
+          },
+          "Free Items": {
+            "precision": 0.9255583126550868,
+            "recall": 0.8179824561403509,
+            "f1-score": 0.8684516880093132,
+            "support": 456.0
+          },
+          "Personal Care": {
+            "precision": 0.8613861386138614,
+            "recall": 0.8859470468431772,
+            "f1-score": 0.8734939759036144,
+            "support": 491.0
+          },
+          "accuracy": 0.8716666666666667,
+          "macro avg": {
+            "precision": 0.8725618615951711,
+            "recall": 0.869863757353024,
+            "f1-score": 0.8703046279052978,
+            "support": 2400.0
+          },
+          "weighted avg": {
+            "precision": 0.8734685838012931,
+            "recall": 0.8716666666666667,
+            "f1-score": 0.8716926757400741,
+            "support": 2400.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            359,
+            18,
+            22,
+            23,
+            41
+          ],
+          [
+            18,
+            464,
+            11,
+            3,
+            13
+          ],
+          [
+            14,
+            3,
+            461,
+            0,
+            3
+          ],
+          [
+            52,
+            9,
+            9,
+            373,
+            13
+          ],
+          [
+            36,
+            9,
+            7,
+            4,
+            435
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.775377969762419,
+            "precision": 0.7494780793319415,
+            "recall": 0.775377969762419,
+            "f1-score": 0.7622080679405521,
+            "support": 463
+          },
+          "Apparel": {
+            "accuracy": 0.9115913555992141,
+            "precision": 0.9224652087475149,
+            "recall": 0.9115913555992141,
+            "f1-score": 0.9169960474308301,
+            "support": 509
+          },
+          "Footwear": {
+            "accuracy": 0.9584199584199584,
+            "precision": 0.903921568627451,
+            "recall": 0.9584199584199584,
+            "f1-score": 0.9303733602421796,
+            "support": 481
+          },
+          "Free Items": {
+            "accuracy": 0.8179824561403509,
+            "precision": 0.9255583126550868,
+            "recall": 0.8179824561403509,
+            "f1-score": 0.8684516880093132,
+            "support": 456
+          },
+          "Personal Care": {
+            "accuracy": 0.8859470468431772,
+            "precision": 0.8613861386138614,
+            "recall": 0.8859470468431772,
+            "f1-score": 0.8734939759036144,
+            "support": 491
+          }
+        }
+      },
+      "val": {
+        "loss": 1.3391092054049174,
+        "overall_accuracy": 0.44333333333333336,
+        "macro_precision": 0.36961541829258876,
+        "macro_recall": 0.44333333333333336,
+        "macro_f1": 0.3692812385001744,
+        "weighted_precision": 0.36961541829258876,
+        "weighted_recall": 0.44333333333333336,
+        "weighted_f1": 0.3692812385001744,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.2185792349726776,
+            "recall": 0.3333333333333333,
+            "f1-score": 0.264026402640264,
+            "support": 120.0
+          },
+          "Apparel": {
+            "precision": 0.4475806451612903,
+            "recall": 0.925,
+            "f1-score": 0.6032608695652174,
+            "support": 120.0
+          },
+          "Footwear": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 120.0
+          },
+          "Free Items": {
+            "precision": 0.4411764705882353,
+            "recall": 0.125,
+            "f1-score": 0.19480519480519481,
+            "support": 120.0
+          },
+          "Personal Care": {
+            "precision": 0.7407407407407407,
+            "recall": 0.8333333333333334,
+            "f1-score": 0.7843137254901961,
+            "support": 120.0
+          },
+          "accuracy": 0.44333333333333336,
+          "macro avg": {
+            "precision": 0.36961541829258876,
+            "recall": 0.44333333333333336,
+            "f1-score": 0.3692812385001744,
+            "support": 600.0
+          },
+          "weighted avg": {
+            "precision": 0.36961541829258876,
+            "recall": 0.44333333333333336,
+            "f1-score": 0.3692812385001744,
+            "support": 600.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            40,
+            51,
+            0,
+            17,
+            12
+          ],
+          [
+            1,
+            111,
+            0,
+            0,
+            8
+          ],
+          [
+            109,
+            9,
+            0,
+            2,
+            0
+          ],
+          [
+            24,
+            66,
+            0,
+            15,
+            15
+          ],
+          [
+            9,
+            11,
+            0,
+            0,
+            100
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.3333333333333333,
+            "precision": 0.2185792349726776,
+            "recall": 0.3333333333333333,
+            "f1-score": 0.264026402640264,
+            "support": 120
+          },
+          "Apparel": {
+            "accuracy": 0.925,
+            "precision": 0.4475806451612903,
+            "recall": 0.925,
+            "f1-score": 0.6032608695652174,
+            "support": 120
+          },
+          "Footwear": {
+            "accuracy": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 120
+          },
+          "Free Items": {
+            "accuracy": 0.125,
+            "precision": 0.4411764705882353,
+            "recall": 0.125,
+            "f1-score": 0.19480519480519481,
+            "support": 120
+          },
+          "Personal Care": {
+            "accuracy": 0.8333333333333334,
+            "precision": 0.7407407407407407,
+            "recall": 0.8333333333333334,
+            "f1-score": 0.7843137254901961,
+            "support": 120
+          }
+        }
+      },
+      "timestamp": "2025-07-07T03:58:39.633583"
+    },
+    {
+      "epoch": 1,
+      "train": {
+        "loss": 1.1174659998714924,
+        "overall_accuracy": 0.5983333333333334,
+        "macro_precision": 0.5881588695905297,
+        "macro_recall": 0.5905783340385403,
+        "macro_f1": 0.5886994263797769,
+        "weighted_precision": 0.5948035808681127,
+        "weighted_recall": 0.5983333333333334,
+        "weighted_f1": 0.5958975954485043,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.33658536585365856,
+            "recall": 0.3157894736842105,
+            "f1-score": 0.32585596221959856,
+            "support": 437.0
+          },
+          "Apparel": {
+            "precision": 0.6587112171837709,
+            "recall": 0.6160714285714286,
+            "f1-score": 0.6366782006920415,
+            "support": 448.0
+          },
+          "Footwear": {
+            "precision": 0.7323688969258589,
+            "recall": 0.7848837209302325,
+            "f1-score": 0.7577174929840973,
+            "support": 516.0
+          },
+          "Free Items": {
+            "precision": 0.6367265469061876,
+            "recall": 0.6087786259541985,
+            "f1-score": 0.6224390243902439,
+            "support": 524.0
+          },
+          "Personal Care": {
+            "precision": 0.5764023210831721,
+            "recall": 0.6273684210526316,
+            "f1-score": 0.6008064516129032,
+            "support": 475.0
+          },
+          "accuracy": 0.5983333333333334,
+          "macro avg": {
+            "precision": 0.5881588695905297,
+            "recall": 0.5905783340385403,
+            "f1-score": 0.5886994263797769,
+            "support": 2400.0
+          },
+          "weighted avg": {
+            "precision": 0.5948035808681127,
+            "recall": 0.5983333333333334,
+            "f1-score": 0.5958975954485043,
+            "support": 2400.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            138,
+            41,
+            87,
+            88,
+            83
+          ],
+          [
+            51,
+            276,
+            18,
+            43,
+            60
+          ],
+          [
+            58,
+            16,
+            405,
+            14,
+            23
+          ],
+          [
+            91,
+            42,
+            19,
+            319,
+            53
+          ],
+          [
+            72,
+            44,
+            24,
+            37,
+            298
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.3157894736842105,
+            "precision": 0.33658536585365856,
+            "recall": 0.3157894736842105,
+            "f1-score": 0.32585596221959856,
+            "support": 437
+          },
+          "Apparel": {
+            "accuracy": 0.6160714285714286,
+            "precision": 0.6587112171837709,
+            "recall": 0.6160714285714286,
+            "f1-score": 0.6366782006920415,
+            "support": 448
+          },
+          "Footwear": {
+            "accuracy": 0.7848837209302325,
+            "precision": 0.7323688969258589,
+            "recall": 0.7848837209302325,
+            "f1-score": 0.7577174929840973,
+            "support": 516
+          },
+          "Free Items": {
+            "accuracy": 0.6087786259541985,
+            "precision": 0.6367265469061876,
+            "recall": 0.6087786259541985,
+            "f1-score": 0.6224390243902439,
+            "support": 524
+          },
+          "Personal Care": {
+            "accuracy": 0.6273684210526316,
+            "precision": 0.5764023210831721,
+            "recall": 0.6273684210526316,
+            "f1-score": 0.6008064516129032,
+            "support": 475
+          }
+        }
+      },
+      "val": {
+        "loss": 1.477099692026774,
+        "overall_accuracy": 0.44333333333333336,
+        "macro_precision": 0.3659811278124775,
+        "macro_recall": 0.44333333333333325,
+        "macro_f1": 0.3885616888756545,
+        "weighted_precision": 0.36598112781247744,
+        "weighted_recall": 0.44333333333333336,
+        "weighted_f1": 0.3885616888756545,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.34444444444444444,
+            "recall": 0.25833333333333336,
+            "f1-score": 0.29523809523809524,
+            "support": 120.0
+          },
+          "Apparel": {
+            "precision": 0.4178082191780822,
+            "recall": 0.5083333333333333,
+            "f1-score": 0.45864661654135336,
+            "support": 120.0
+          },
+          "Footwear": {
+            "precision": 0.5535714285714286,
+            "recall": 0.775,
+            "f1-score": 0.6458333333333334,
+            "support": 120.0
+          },
+          "Free Items": {
+            "precision": 0.07692307692307693,
+            "recall": 0.008333333333333333,
+            "f1-score": 0.015037593984962405,
+            "support": 120.0
+          },
+          "Personal Care": {
+            "precision": 0.4371584699453552,
+            "recall": 0.6666666666666666,
+            "f1-score": 0.528052805280528,
+            "support": 120.0
+          },
+          "accuracy": 0.44333333333333336,
+          "macro avg": {
+            "precision": 0.3659811278124775,
+            "recall": 0.44333333333333325,
+            "f1-score": 0.3885616888756545,
+            "support": 600.0
+          },
+          "weighted avg": {
+            "precision": 0.36598112781247744,
+            "recall": 0.44333333333333336,
+            "f1-score": 0.3885616888756545,
+            "support": 600.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            31,
+            22,
+            37,
+            2,
+            28
+          ],
+          [
+            14,
+            61,
+            10,
+            4,
+            31
+          ],
+          [
+            16,
+            2,
+            93,
+            1,
+            8
+          ],
+          [
+            21,
+            46,
+            16,
+            1,
+            36
+          ],
+          [
+            8,
+            15,
+            12,
+            5,
+            80
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.25833333333333336,
+            "precision": 0.34444444444444444,
+            "recall": 0.25833333333333336,
+            "f1-score": 0.29523809523809524,
+            "support": 120
+          },
+          "Apparel": {
+            "accuracy": 0.5083333333333333,
+            "precision": 0.4178082191780822,
+            "recall": 0.5083333333333333,
+            "f1-score": 0.45864661654135336,
+            "support": 120
+          },
+          "Footwear": {
+            "accuracy": 0.775,
+            "precision": 0.5535714285714286,
+            "recall": 0.775,
+            "f1-score": 0.6458333333333334,
+            "support": 120
+          },
+          "Free Items": {
+            "accuracy": 0.008333333333333333,
+            "precision": 0.07692307692307693,
+            "recall": 0.008333333333333333,
+            "f1-score": 0.015037593984962405,
+            "support": 120
+          },
+          "Personal Care": {
+            "accuracy": 0.6666666666666666,
+            "precision": 0.4371584699453552,
+            "recall": 0.6666666666666666,
+            "f1-score": 0.528052805280528,
+            "support": 120
+          }
+        }
+      },
+      "timestamp": "2025-07-07T04:06:56.645380"
+    },
+    {
+      "epoch": 2,
+      "train": {
+        "loss": 1.0126939071466525,
+        "overall_accuracy": 0.6183333333333333,
+        "macro_precision": 0.6128965468421661,
+        "macro_recall": 0.6157973731529626,
+        "macro_f1": 0.6135593276617931,
+        "weighted_precision": 0.6152026902299023,
+        "weighted_recall": 0.6183333333333333,
+        "weighted_f1": 0.6159802532405927,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.39903846153846156,
+            "recall": 0.36086956521739133,
+            "f1-score": 0.3789954337899543,
+            "support": 460.0
+          },
+          "Apparel": {
+            "precision": 0.6191489361702127,
+            "recall": 0.60625,
+            "f1-score": 0.6126315789473684,
+            "support": 480.0
+          },
+          "Footwear": {
+            "precision": 0.749003984063745,
+            "recall": 0.7849686847599165,
+            "f1-score": 0.7665647298674821,
+            "support": 479.0
+          },
+          "Free Items": {
+            "precision": 0.7200854700854701,
+            "recall": 0.6808080808080809,
+            "f1-score": 0.6998961578400831,
+            "support": 495.0
+          },
+          "Personal Care": {
+            "precision": 0.5772058823529411,
+            "recall": 0.6460905349794238,
+            "f1-score": 0.6097087378640776,
+            "support": 486.0
+          },
+          "accuracy": 0.6183333333333333,
+          "macro avg": {
+            "precision": 0.6128965468421661,
+            "recall": 0.6157973731529626,
+            "f1-score": 0.6135593276617931,
+            "support": 2400.0
+          },
+          "weighted avg": {
+            "precision": 0.6152026902299023,
+            "recall": 0.6183333333333333,
+            "f1-score": 0.6159802532405927,
+            "support": 2400.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            166,
+            77,
+            66,
+            64,
+            87
+          ],
+          [
+            64,
+            291,
+            20,
+            28,
+            77
+          ],
+          [
+            57,
+            13,
+            376,
+            9,
+            24
+          ],
+          [
+            62,
+            37,
+            17,
+            337,
+            42
+          ],
+          [
+            67,
+            52,
+            23,
+            30,
+            314
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.36086956521739133,
+            "precision": 0.39903846153846156,
+            "recall": 0.36086956521739133,
+            "f1-score": 0.3789954337899543,
+            "support": 460
+          },
+          "Apparel": {
+            "accuracy": 0.60625,
+            "precision": 0.6191489361702127,
+            "recall": 0.60625,
+            "f1-score": 0.6126315789473684,
+            "support": 480
+          },
+          "Footwear": {
+            "accuracy": 0.7849686847599165,
+            "precision": 0.749003984063745,
+            "recall": 0.7849686847599165,
+            "f1-score": 0.7665647298674821,
+            "support": 479
+          },
+          "Free Items": {
+            "accuracy": 0.6808080808080809,
+            "precision": 0.7200854700854701,
+            "recall": 0.6808080808080809,
+            "f1-score": 0.6998961578400831,
+            "support": 495
+          },
+          "Personal Care": {
+            "accuracy": 0.6460905349794238,
+            "precision": 0.5772058823529411,
+            "recall": 0.6460905349794238,
+            "f1-score": 0.6097087378640776,
+            "support": 486
+          }
+        }
+      },
+      "val": {
+        "loss": 1.3085378833611807,
+        "overall_accuracy": 0.5466666666666666,
+        "macro_precision": 0.5693731789966099,
+        "macro_recall": 0.5466666666666666,
+        "macro_f1": 0.5010675897808267,
+        "weighted_precision": 0.56937317899661,
+        "weighted_recall": 0.5466666666666666,
+        "weighted_f1": 0.5010675897808267,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.30158730158730157,
+            "recall": 0.31666666666666665,
+            "f1-score": 0.3089430894308943,
+            "support": 120.0
+          },
+          "Apparel": {
+            "precision": 0.8648648648648649,
+            "recall": 0.5333333333333333,
+            "f1-score": 0.6597938144329897,
+            "support": 120.0
+          },
+          "Footwear": {
+            "precision": 0.502092050209205,
+            "recall": 1.0,
+            "f1-score": 0.6685236768802229,
+            "support": 120.0
+          },
+          "Free Items": {
+            "precision": 0.5,
+            "recall": 0.075,
+            "f1-score": 0.13043478260869565,
+            "support": 120.0
+          },
+          "Personal Care": {
+            "precision": 0.6783216783216783,
+            "recall": 0.8083333333333333,
+            "f1-score": 0.7376425855513308,
+            "support": 120.0
+          },
+          "accuracy": 0.5466666666666666,
+          "macro avg": {
+            "precision": 0.5693731789966099,
+            "recall": 0.5466666666666666,
+            "f1-score": 0.5010675897808267,
+            "support": 600.0
+          },
+          "weighted avg": {
+            "precision": 0.56937317899661,
+            "recall": 0.5466666666666666,
+            "f1-score": 0.5010675897808267,
+            "support": 600.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            38,
+            1,
+            59,
+            6,
+            16
+          ],
+          [
+            28,
+            64,
+            15,
+            2,
+            11
+          ],
+          [
+            0,
+            0,
+            120,
+            0,
+            0
+          ],
+          [
+            55,
+            8,
+            29,
+            9,
+            19
+          ],
+          [
+            5,
+            1,
+            16,
+            1,
+            97
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.31666666666666665,
+            "precision": 0.30158730158730157,
+            "recall": 0.31666666666666665,
+            "f1-score": 0.3089430894308943,
+            "support": 120
+          },
+          "Apparel": {
+            "accuracy": 0.5333333333333333,
+            "precision": 0.8648648648648649,
+            "recall": 0.5333333333333333,
+            "f1-score": 0.6597938144329897,
+            "support": 120
+          },
+          "Footwear": {
+            "accuracy": 1.0,
+            "precision": 0.502092050209205,
+            "recall": 1.0,
+            "f1-score": 0.6685236768802229,
+            "support": 120
+          },
+          "Free Items": {
+            "accuracy": 0.075,
+            "precision": 0.5,
+            "recall": 0.075,
+            "f1-score": 0.13043478260869565,
+            "support": 120
+          },
+          "Personal Care": {
+            "accuracy": 0.8083333333333333,
+            "precision": 0.6783216783216783,
+            "recall": 0.8083333333333333,
+            "f1-score": 0.7376425855513308,
+            "support": 120
+          }
+        }
+      },
+      "timestamp": "2025-07-07T04:15:18.194126"
+    },
+    {
+      "epoch": 3,
+      "train": {
+        "loss": 0.7551663377632697,
+        "overall_accuracy": 0.72875,
+        "macro_precision": 0.7310366563949278,
+        "macro_recall": 0.7303776053765992,
+        "macro_f1": 0.7299586922535034,
+        "weighted_precision": 0.7297617621918778,
+        "weighted_recall": 0.72875,
+        "weighted_f1": 0.7285006122472718,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.5975609756097561,
+            "recall": 0.5903614457831325,
+            "f1-score": 0.593939393939394,
+            "support": 498.0
+          },
+          "Apparel": {
+            "precision": 0.6840958605664488,
+            "recall": 0.6796536796536796,
+            "f1-score": 0.6818675352877307,
+            "support": 462.0
+          },
+          "Footwear": {
+            "precision": 0.8627049180327869,
+            "recall": 0.9034334763948498,
+            "f1-score": 0.8825995807127882,
+            "support": 466.0
+          },
+          "Free Items": {
+            "precision": 0.8237986270022883,
+            "recall": 0.7392197125256673,
+            "f1-score": 0.7792207792207793,
+            "support": 487.0
+          },
+          "Personal Care": {
+            "precision": 0.6870229007633588,
+            "recall": 0.7392197125256673,
+            "f1-score": 0.712166172106825,
+            "support": 487.0
+          },
+          "accuracy": 0.72875,
+          "macro avg": {
+            "precision": 0.7310366563949278,
+            "recall": 0.7303776053765992,
+            "f1-score": 0.7299586922535034,
+            "support": 2400.0
+          },
+          "weighted avg": {
+            "precision": 0.7297617621918778,
+            "recall": 0.72875,
+            "f1-score": 0.7285006122472718,
+            "support": 2400.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            294,
+            48,
+            39,
+            36,
+            81
+          ],
+          [
+            62,
+            314,
+            7,
+            26,
+            53
+          ],
+          [
+            28,
+            6,
+            421,
+            1,
+            10
+          ],
+          [
+            60,
+            37,
+            10,
+            360,
+            20
+          ],
+          [
+            48,
+            54,
+            11,
+            14,
+            360
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.5903614457831325,
+            "precision": 0.5975609756097561,
+            "recall": 0.5903614457831325,
+            "f1-score": 0.593939393939394,
+            "support": 498
+          },
+          "Apparel": {
+            "accuracy": 0.6796536796536796,
+            "precision": 0.6840958605664488,
+            "recall": 0.6796536796536796,
+            "f1-score": 0.6818675352877307,
+            "support": 462
+          },
+          "Footwear": {
+            "accuracy": 0.9034334763948498,
+            "precision": 0.8627049180327869,
+            "recall": 0.9034334763948498,
+            "f1-score": 0.8825995807127882,
+            "support": 466
+          },
+          "Free Items": {
+            "accuracy": 0.7392197125256673,
+            "precision": 0.8237986270022883,
+            "recall": 0.7392197125256673,
+            "f1-score": 0.7792207792207793,
+            "support": 487
+          },
+          "Personal Care": {
+            "accuracy": 0.7392197125256673,
+            "precision": 0.6870229007633588,
+            "recall": 0.7392197125256673,
+            "f1-score": 0.712166172106825,
+            "support": 487
+          }
+        }
+      },
+      "val": {
+        "loss": 1.0674748611450195,
+        "overall_accuracy": 0.6533333333333333,
+        "macro_precision": 0.5394796124872016,
+        "macro_recall": 0.6533333333333333,
+        "macro_f1": 0.5849217533571514,
+        "weighted_precision": 0.5394796124872014,
+        "weighted_recall": 0.6533333333333333,
+        "weighted_f1": 0.5849217533571512,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.5367647058823529,
+            "recall": 0.6083333333333333,
+            "f1-score": 0.5703125,
+            "support": 120.0
+          },
+          "Apparel": {
+            "precision": 0.6308724832214765,
+            "recall": 0.7833333333333333,
+            "f1-score": 0.6988847583643123,
+            "support": 120.0
+          },
+          "Footwear": {
+            "precision": 0.9568965517241379,
+            "recall": 0.925,
+            "f1-score": 0.940677966101695,
+            "support": 120.0
+          },
+          "Free Items": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 120.0
+          },
+          "Personal Care": {
+            "precision": 0.5728643216080402,
+            "recall": 0.95,
+            "f1-score": 0.7147335423197492,
+            "support": 120.0
+          },
+          "accuracy": 0.6533333333333333,
+          "macro avg": {
+            "precision": 0.5394796124872016,
+            "recall": 0.6533333333333333,
+            "f1-score": 0.5849217533571514,
+            "support": 600.0
+          },
+          "weighted avg": {
+            "precision": 0.5394796124872014,
+            "recall": 0.6533333333333333,
+            "f1-score": 0.5849217533571512,
+            "support": 600.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            73,
+            10,
+            5,
+            0,
+            32
+          ],
+          [
+            5,
+            94,
+            0,
+            0,
+            21
+          ],
+          [
+            6,
+            0,
+            111,
+            0,
+            3
+          ],
+          [
+            48,
+            43,
+            0,
+            0,
+            29
+          ],
+          [
+            4,
+            2,
+            0,
+            0,
+            114
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.6083333333333333,
+            "precision": 0.5367647058823529,
+            "recall": 0.6083333333333333,
+            "f1-score": 0.5703125,
+            "support": 120
+          },
+          "Apparel": {
+            "accuracy": 0.7833333333333333,
+            "precision": 0.6308724832214765,
+            "recall": 0.7833333333333333,
+            "f1-score": 0.6988847583643123,
+            "support": 120
+          },
+          "Footwear": {
+            "accuracy": 0.925,
+            "precision": 0.9568965517241379,
+            "recall": 0.925,
+            "f1-score": 0.940677966101695,
+            "support": 120
+          },
+          "Free Items": {
+            "accuracy": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 120
+          },
+          "Personal Care": {
+            "accuracy": 0.95,
+            "precision": 0.5728643216080402,
+            "recall": 0.95,
+            "f1-score": 0.7147335423197492,
+            "support": 120
+          }
+        }
+      },
+      "timestamp": "2025-07-07T04:23:23.961452"
+    },
+    {
+      "epoch": 4,
+      "train": {
+        "loss": 0.5362469858813953,
+        "overall_accuracy": 0.8016666666666666,
+        "macro_precision": 0.8054796847366635,
+        "macro_recall": 0.8018268749832792,
+        "macro_f1": 0.802918103617354,
+        "weighted_precision": 0.804728799445748,
+        "weighted_recall": 0.8016666666666666,
+        "weighted_f1": 0.8024532794389119,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.6504854368932039,
+            "recall": 0.6864754098360656,
+            "f1-score": 0.6679960119641076,
+            "support": 488.0
+          },
+          "Apparel": {
+            "precision": 0.8113636363636364,
+            "recall": 0.7898230088495575,
+            "f1-score": 0.8004484304932735,
+            "support": 452.0
+          },
+          "Footwear": {
+            "precision": 0.9106029106029107,
+            "recall": 0.9182389937106918,
+            "f1-score": 0.9144050104384134,
+            "support": 477.0
+          },
+          "Free Items": {
+            "precision": 0.8666666666666667,
+            "recall": 0.7789256198347108,
+            "f1-score": 0.8204570184983678,
+            "support": 484.0
+          },
+          "Personal Care": {
+            "precision": 0.7882797731568998,
+            "recall": 0.8356713426853707,
+            "f1-score": 0.811284046692607,
+            "support": 499.0
+          },
+          "accuracy": 0.8016666666666666,
+          "macro avg": {
+            "precision": 0.8054796847366635,
+            "recall": 0.8018268749832792,
+            "f1-score": 0.802918103617354,
+            "support": 2400.0
+          },
+          "weighted avg": {
+            "precision": 0.804728799445748,
+            "recall": 0.8016666666666666,
+            "f1-score": 0.8024532794389119,
+            "support": 2400.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            335,
+            35,
+            28,
+            33,
+            57
+          ],
+          [
+            40,
+            357,
+            7,
+            14,
+            34
+          ],
+          [
+            28,
+            5,
+            438,
+            0,
+            6
+          ],
+          [
+            66,
+            23,
+            3,
+            377,
+            15
+          ],
+          [
+            46,
+            20,
+            5,
+            11,
+            417
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.6864754098360656,
+            "precision": 0.6504854368932039,
+            "recall": 0.6864754098360656,
+            "f1-score": 0.6679960119641076,
+            "support": 488
+          },
+          "Apparel": {
+            "accuracy": 0.7898230088495575,
+            "precision": 0.8113636363636364,
+            "recall": 0.7898230088495575,
+            "f1-score": 0.8004484304932735,
+            "support": 452
+          },
+          "Footwear": {
+            "accuracy": 0.9182389937106918,
+            "precision": 0.9106029106029107,
+            "recall": 0.9182389937106918,
+            "f1-score": 0.9144050104384134,
+            "support": 477
+          },
+          "Free Items": {
+            "accuracy": 0.7789256198347108,
+            "precision": 0.8666666666666667,
+            "recall": 0.7789256198347108,
+            "f1-score": 0.8204570184983678,
+            "support": 484
+          },
+          "Personal Care": {
+            "accuracy": 0.8356713426853707,
+            "precision": 0.7882797731568998,
+            "recall": 0.8356713426853707,
+            "f1-score": 0.811284046692607,
+            "support": 499
+          }
+        }
+      },
+      "val": {
+        "loss": 0.8694895937045415,
+        "overall_accuracy": 0.645,
+        "macro_precision": 0.6421325518754869,
+        "macro_recall": 0.645,
+        "macro_f1": 0.6239622723853679,
+        "weighted_precision": 0.6421325518754869,
+        "weighted_recall": 0.645,
+        "weighted_f1": 0.6239622723853679,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.5045871559633027,
+            "recall": 0.4583333333333333,
+            "f1-score": 0.48034934497816595,
+            "support": 120.0
+          },
+          "Apparel": {
+            "precision": 0.5392156862745098,
+            "recall": 0.9166666666666666,
+            "f1-score": 0.6790123456790124,
+            "support": 120.0
+          },
+          "Footwear": {
+            "precision": 0.9724770642201835,
+            "recall": 0.8833333333333333,
+            "f1-score": 0.925764192139738,
+            "support": 120.0
+          },
+          "Free Items": {
+            "precision": 0.45454545454545453,
+            "recall": 0.20833333333333334,
+            "f1-score": 0.2857142857142857,
+            "support": 120.0
+          },
+          "Personal Care": {
+            "precision": 0.7398373983739838,
+            "recall": 0.7583333333333333,
+            "f1-score": 0.7489711934156379,
+            "support": 120.0
+          },
+          "accuracy": 0.645,
+          "macro avg": {
+            "precision": 0.6421325518754869,
+            "recall": 0.645,
+            "f1-score": 0.6239622723853679,
+            "support": 600.0
+          },
+          "weighted avg": {
+            "precision": 0.6421325518754869,
+            "recall": 0.645,
+            "f1-score": 0.6239622723853679,
+            "support": 600.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            55,
+            24,
+            1,
+            25,
+            15
+          ],
+          [
+            3,
+            110,
+            0,
+            2,
+            5
+          ],
+          [
+            11,
+            0,
+            106,
+            2,
+            1
+          ],
+          [
+            34,
+            48,
+            2,
+            25,
+            11
+          ],
+          [
+            6,
+            22,
+            0,
+            1,
+            91
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.4583333333333333,
+            "precision": 0.5045871559633027,
+            "recall": 0.4583333333333333,
+            "f1-score": 0.48034934497816595,
+            "support": 120
+          },
+          "Apparel": {
+            "accuracy": 0.9166666666666666,
+            "precision": 0.5392156862745098,
+            "recall": 0.9166666666666666,
+            "f1-score": 0.6790123456790124,
+            "support": 120
+          },
+          "Footwear": {
+            "accuracy": 0.8833333333333333,
+            "precision": 0.9724770642201835,
+            "recall": 0.8833333333333333,
+            "f1-score": 0.925764192139738,
+            "support": 120
+          },
+          "Free Items": {
+            "accuracy": 0.20833333333333334,
+            "precision": 0.45454545454545453,
+            "recall": 0.20833333333333334,
+            "f1-score": 0.2857142857142857,
+            "support": 120
+          },
+          "Personal Care": {
+            "accuracy": 0.7583333333333333,
+            "precision": 0.7398373983739838,
+            "recall": 0.7583333333333333,
+            "f1-score": 0.7489711934156379,
+            "support": 120
+          }
+        }
+      },
+      "timestamp": "2025-07-07T04:31:45.012329"
+    },
+    {
+      "epoch": 5,
+      "train": {
+        "loss": 0.431417061756365,
+        "overall_accuracy": 0.8508333333333333,
+        "macro_precision": 0.8552054625770451,
+        "macro_recall": 0.8507131238880177,
+        "macro_f1": 0.8520592160618147,
+        "weighted_precision": 0.8537972372228543,
+        "weighted_recall": 0.8508333333333333,
+        "weighted_f1": 0.8514291308439484,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.7350746268656716,
+            "recall": 0.7864271457085829,
+            "f1-score": 0.759884281581485,
+            "support": 501.0
+          },
+          "Apparel": {
+            "precision": 0.8668171557562077,
+            "recall": 0.8187633262260128,
+            "f1-score": 0.8421052631578947,
+            "support": 469.0
+          },
+          "Footwear": {
+            "precision": 0.928,
+            "recall": 0.9508196721311475,
+            "f1-score": 0.9392712550607287,
+            "support": 488.0
+          },
+          "Free Items": {
+            "precision": 0.9180722891566265,
+            "recall": 0.8282608695652174,
+            "f1-score": 0.8708571428571429,
+            "support": 460.0
+          },
+          "Personal Care": {
+            "precision": 0.8280632411067194,
+            "recall": 0.8692946058091287,
+            "f1-score": 0.8481781376518218,
+            "support": 482.0
+          },
+          "accuracy": 0.8508333333333333,
+          "macro avg": {
+            "precision": 0.8552054625770451,
+            "recall": 0.8507131238880177,
+            "f1-score": 0.8520592160618147,
+            "support": 2400.0
+          },
+          "weighted avg": {
+            "precision": 0.8537972372228543,
+            "recall": 0.8508333333333333,
+            "f1-score": 0.8514291308439484,
+            "support": 2400.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            394,
+            24,
+            19,
+            23,
+            41
+          ],
+          [
+            42,
+            384,
+            4,
+            5,
+            34
+          ],
+          [
+            20,
+            2,
+            464,
+            0,
+            2
+          ],
+          [
+            49,
+            18,
+            2,
+            381,
+            10
+          ],
+          [
+            31,
+            15,
+            11,
+            6,
+            419
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.7864271457085829,
+            "precision": 0.7350746268656716,
+            "recall": 0.7864271457085829,
+            "f1-score": 0.759884281581485,
+            "support": 501
+          },
+          "Apparel": {
+            "accuracy": 0.8187633262260128,
+            "precision": 0.8668171557562077,
+            "recall": 0.8187633262260128,
+            "f1-score": 0.8421052631578947,
+            "support": 469
+          },
+          "Footwear": {
+            "accuracy": 0.9508196721311475,
+            "precision": 0.928,
+            "recall": 0.9508196721311475,
+            "f1-score": 0.9392712550607287,
+            "support": 488
+          },
+          "Free Items": {
+            "accuracy": 0.8282608695652174,
+            "precision": 0.9180722891566265,
+            "recall": 0.8282608695652174,
+            "f1-score": 0.8708571428571429,
+            "support": 460
+          },
+          "Personal Care": {
+            "accuracy": 0.8692946058091287,
+            "precision": 0.8280632411067194,
+            "recall": 0.8692946058091287,
+            "f1-score": 0.8481781376518218,
+            "support": 482
+          }
+        }
+      },
+      "val": {
+        "loss": 0.744754735827446,
+        "overall_accuracy": 0.7383333333333333,
+        "macro_precision": 0.7542888914916235,
+        "macro_recall": 0.7383333333333333,
+        "macro_f1": 0.7252126147082789,
+        "weighted_precision": 0.7542888914916234,
+        "weighted_recall": 0.7383333333333333,
+        "weighted_f1": 0.7252126147082788,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.4861878453038674,
+            "recall": 0.7333333333333333,
+            "f1-score": 0.584717607973422,
+            "support": 120.0
+          },
+          "Apparel": {
+            "precision": 0.8188976377952756,
+            "recall": 0.8666666666666667,
+            "f1-score": 0.8421052631578947,
+            "support": 120.0
+          },
+          "Footwear": {
+            "precision": 0.9743589743589743,
+            "recall": 0.95,
+            "f1-score": 0.9620253164556962,
+            "support": 120.0
+          },
+          "Free Items": {
+            "precision": 0.66,
+            "recall": 0.275,
+            "f1-score": 0.38823529411764707,
+            "support": 120.0
+          },
+          "Personal Care": {
+            "precision": 0.832,
+            "recall": 0.8666666666666667,
+            "f1-score": 0.8489795918367347,
+            "support": 120.0
+          },
+          "accuracy": 0.7383333333333333,
+          "macro avg": {
+            "precision": 0.7542888914916235,
+            "recall": 0.7383333333333333,
+            "f1-score": 0.7252126147082789,
+            "support": 600.0
+          },
+          "weighted avg": {
+            "precision": 0.7542888914916234,
+            "recall": 0.7383333333333333,
+            "f1-score": 0.7252126147082788,
+            "support": 600.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            88,
+            9,
+            2,
+            12,
+            9
+          ],
+          [
+            8,
+            104,
+            1,
+            5,
+            2
+          ],
+          [
+            6,
+            0,
+            114,
+            0,
+            0
+          ],
+          [
+            66,
+            11,
+            0,
+            33,
+            10
+          ],
+          [
+            13,
+            3,
+            0,
+            0,
+            104
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.7333333333333333,
+            "precision": 0.4861878453038674,
+            "recall": 0.7333333333333333,
+            "f1-score": 0.584717607973422,
+            "support": 120
+          },
+          "Apparel": {
+            "accuracy": 0.8666666666666667,
+            "precision": 0.8188976377952756,
+            "recall": 0.8666666666666667,
+            "f1-score": 0.8421052631578947,
+            "support": 120
+          },
+          "Footwear": {
+            "accuracy": 0.95,
+            "precision": 0.9743589743589743,
+            "recall": 0.95,
+            "f1-score": 0.9620253164556962,
+            "support": 120
+          },
+          "Free Items": {
+            "accuracy": 0.275,
+            "precision": 0.66,
+            "recall": 0.275,
+            "f1-score": 0.38823529411764707,
+            "support": 120
+          },
+          "Personal Care": {
+            "accuracy": 0.8666666666666667,
+            "precision": 0.832,
+            "recall": 0.8666666666666667,
+            "f1-score": 0.8489795918367347,
+            "support": 120
+          }
+        }
+      },
+      "timestamp": "2025-07-07T04:40:07.978084"
+    },
+    {
+      "epoch": 6,
+      "train": {
+        "loss": 0.3244172365567647,
+        "overall_accuracy": 0.8858333333333334,
+        "macro_precision": 0.8886625565870109,
+        "macro_recall": 0.8853274175956223,
+        "macro_f1": 0.885888703960798,
+        "weighted_precision": 0.8898569955999219,
+        "weighted_recall": 0.8858333333333334,
+        "weighted_f1": 0.8867062750562641,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.7551789077212806,
+            "recall": 0.8302277432712215,
+            "f1-score": 0.7909270216962525,
+            "support": 483.0
+          },
+          "Apparel": {
+            "precision": 0.8833333333333333,
+            "recall": 0.8489702517162472,
+            "f1-score": 0.8658109684947491,
+            "support": 437.0
+          },
+          "Footwear": {
+            "precision": 0.9696969696969697,
+            "recall": 0.97165991902834,
+            "f1-score": 0.9706774519716885,
+            "support": 494.0
+          },
+          "Free Items": {
+            "precision": 0.9495614035087719,
+            "recall": 0.8473581213307241,
+            "f1-score": 0.8955532574974147,
+            "support": 511.0
+          },
+          "Personal Care": {
+            "precision": 0.8855421686746988,
+            "recall": 0.9284210526315789,
+            "f1-score": 0.9064748201438849,
+            "support": 475.0
+          },
+          "accuracy": 0.8858333333333334,
+          "macro avg": {
+            "precision": 0.8886625565870109,
+            "recall": 0.8853274175956223,
+            "f1-score": 0.885888703960798,
+            "support": 2400.0
+          },
+          "weighted avg": {
+            "precision": 0.8898569955999219,
+            "recall": 0.8858333333333334,
+            "f1-score": 0.8867062750562641,
+            "support": 2400.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            401,
+            23,
+            11,
+            20,
+            28
+          ],
+          [
+            41,
+            371,
+            1,
+            1,
+            23
+          ],
+          [
+            10,
+            1,
+            480,
+            1,
+            2
+          ],
+          [
+            56,
+            17,
+            1,
+            433,
+            4
+          ],
+          [
+            23,
+            8,
+            2,
+            1,
+            441
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.8302277432712215,
+            "precision": 0.7551789077212806,
+            "recall": 0.8302277432712215,
+            "f1-score": 0.7909270216962525,
+            "support": 483
+          },
+          "Apparel": {
+            "accuracy": 0.8489702517162472,
+            "precision": 0.8833333333333333,
+            "recall": 0.8489702517162472,
+            "f1-score": 0.8658109684947491,
+            "support": 437
+          },
+          "Footwear": {
+            "accuracy": 0.97165991902834,
+            "precision": 0.9696969696969697,
+            "recall": 0.97165991902834,
+            "f1-score": 0.9706774519716885,
+            "support": 494
+          },
+          "Free Items": {
+            "accuracy": 0.8473581213307241,
+            "precision": 0.9495614035087719,
+            "recall": 0.8473581213307241,
+            "f1-score": 0.8955532574974147,
+            "support": 511
+          },
+          "Personal Care": {
+            "accuracy": 0.9284210526315789,
+            "precision": 0.8855421686746988,
+            "recall": 0.9284210526315789,
+            "f1-score": 0.9064748201438849,
+            "support": 475
+          }
+        }
+      },
+      "val": {
+        "loss": 0.6578411828974883,
+        "overall_accuracy": 0.75,
+        "macro_precision": 0.792128984030357,
+        "macro_recall": 0.75,
+        "macro_f1": 0.7349296627584551,
+        "weighted_precision": 0.792128984030357,
+        "weighted_recall": 0.75,
+        "weighted_f1": 0.7349296627584551,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.5046728971962616,
+            "recall": 0.9,
+            "f1-score": 0.6467065868263473,
+            "support": 120.0
+          },
+          "Apparel": {
+            "precision": 0.9117647058823529,
+            "recall": 0.775,
+            "f1-score": 0.8378378378378378,
+            "support": 120.0
+          },
+          "Footwear": {
+            "precision": 1.0,
+            "recall": 0.9583333333333334,
+            "f1-score": 0.9787234042553191,
+            "support": 120.0
+          },
+          "Free Items": {
+            "precision": 0.7317073170731707,
+            "recall": 0.25,
+            "f1-score": 0.37267080745341613,
+            "support": 120.0
+          },
+          "Personal Care": {
+            "precision": 0.8125,
+            "recall": 0.8666666666666667,
+            "f1-score": 0.8387096774193549,
+            "support": 120.0
+          },
+          "accuracy": 0.75,
+          "macro avg": {
+            "precision": 0.792128984030357,
+            "recall": 0.75,
+            "f1-score": 0.7349296627584551,
+            "support": 600.0
+          },
+          "weighted avg": {
+            "precision": 0.792128984030357,
+            "recall": 0.75,
+            "f1-score": 0.7349296627584551,
+            "support": 600.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            108,
+            2,
+            0,
+            2,
+            8
+          ],
+          [
+            11,
+            93,
+            0,
+            7,
+            9
+          ],
+          [
+            5,
+            0,
+            115,
+            0,
+            0
+          ],
+          [
+            78,
+            5,
+            0,
+            30,
+            7
+          ],
+          [
+            12,
+            2,
+            0,
+            2,
+            104
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.9,
+            "precision": 0.5046728971962616,
+            "recall": 0.9,
+            "f1-score": 0.6467065868263473,
+            "support": 120
+          },
+          "Apparel": {
+            "accuracy": 0.775,
+            "precision": 0.9117647058823529,
+            "recall": 0.775,
+            "f1-score": 0.8378378378378378,
+            "support": 120
+          },
+          "Footwear": {
+            "accuracy": 0.9583333333333334,
+            "precision": 1.0,
+            "recall": 0.9583333333333334,
+            "f1-score": 0.9787234042553191,
+            "support": 120
+          },
+          "Free Items": {
+            "accuracy": 0.25,
+            "precision": 0.7317073170731707,
+            "recall": 0.25,
+            "f1-score": 0.37267080745341613,
+            "support": 120
+          },
+          "Personal Care": {
+            "accuracy": 0.8666666666666667,
+            "precision": 0.8125,
+            "recall": 0.8666666666666667,
+            "f1-score": 0.8387096774193549,
+            "support": 120
+          }
+        }
+      },
+      "timestamp": "2025-07-07T04:48:30.563423"
+    },
+    {
+      "epoch": 7,
+      "train": {
+        "loss": 0.23336647683560538,
+        "overall_accuracy": 0.9191666666666667,
+        "macro_precision": 0.9237820509221215,
+        "macro_recall": 0.9213926250552241,
+        "macro_f1": 0.9213386580576373,
+        "weighted_precision": 0.9228928152250104,
+        "weighted_recall": 0.9191666666666667,
+        "weighted_f1": 0.9197281771806244,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.8040293040293041,
+            "recall": 0.9032921810699589,
+            "f1-score": 0.8507751937984496,
+            "support": 486.0
+          },
+          "Apparel": {
+            "precision": 0.9261603375527426,
+            "recall": 0.9089026915113871,
+            "f1-score": 0.9174503657262278,
+            "support": 483.0
+          },
+          "Footwear": {
+            "precision": 0.9887133182844243,
+            "recall": 0.9887133182844243,
+            "f1-score": 0.9887133182844243,
+            "support": 443.0
+          },
+          "Free Items": {
+            "precision": 0.956140350877193,
+            "recall": 0.8482490272373541,
+            "f1-score": 0.8989690721649485,
+            "support": 514.0
+          },
+          "Personal Care": {
+            "precision": 0.9438669438669439,
+            "recall": 0.9578059071729957,
+            "f1-score": 0.9507853403141361,
+            "support": 474.0
+          },
+          "accuracy": 0.9191666666666667,
+          "macro avg": {
+            "precision": 0.9237820509221215,
+            "recall": 0.9213926250552241,
+            "f1-score": 0.9213386580576373,
+            "support": 2400.0
+          },
+          "weighted avg": {
+            "precision": 0.9228928152250104,
+            "recall": 0.9191666666666667,
+            "f1-score": 0.9197281771806244,
+            "support": 2400.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            439,
+            20,
+            2,
+            15,
+            10
+          ],
+          [
+            27,
+            439,
+            0,
+            5,
+            12
+          ],
+          [
+            3,
+            0,
+            438,
+            0,
+            2
+          ],
+          [
+            64,
+            9,
+            2,
+            436,
+            3
+          ],
+          [
+            13,
+            6,
+            1,
+            0,
+            454
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.9032921810699589,
+            "precision": 0.8040293040293041,
+            "recall": 0.9032921810699589,
+            "f1-score": 0.8507751937984496,
+            "support": 486
+          },
+          "Apparel": {
+            "accuracy": 0.9089026915113871,
+            "precision": 0.9261603375527426,
+            "recall": 0.9089026915113871,
+            "f1-score": 0.9174503657262278,
+            "support": 483
+          },
+          "Footwear": {
+            "accuracy": 0.9887133182844243,
+            "precision": 0.9887133182844243,
+            "recall": 0.9887133182844243,
+            "f1-score": 0.9887133182844243,
+            "support": 443
+          },
+          "Free Items": {
+            "accuracy": 0.8482490272373541,
+            "precision": 0.956140350877193,
+            "recall": 0.8482490272373541,
+            "f1-score": 0.8989690721649485,
+            "support": 514
+          },
+          "Personal Care": {
+            "accuracy": 0.9578059071729957,
+            "precision": 0.9438669438669439,
+            "recall": 0.9578059071729957,
+            "f1-score": 0.9507853403141361,
+            "support": 474
+          }
+        }
+      },
+      "val": {
+        "loss": 0.6392654727647702,
+        "overall_accuracy": 0.7633333333333333,
+        "macro_precision": 0.8121227725264392,
+        "macro_recall": 0.7633333333333333,
+        "macro_f1": 0.7422161671003631,
+        "weighted_precision": 0.8121227725264392,
+        "weighted_recall": 0.7633333333333333,
+        "weighted_f1": 0.742216167100363,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.5319148936170213,
+            "recall": 0.8333333333333334,
+            "f1-score": 0.6493506493506493,
+            "support": 120.0
+          },
+          "Apparel": {
+            "precision": 0.7692307692307693,
+            "recall": 0.9166666666666666,
+            "f1-score": 0.8365019011406845,
+            "support": 120.0
+          },
+          "Footwear": {
+            "precision": 0.9826086956521739,
+            "recall": 0.9416666666666667,
+            "f1-score": 0.9617021276595744,
+            "support": 120.0
+          },
+          "Free Items": {
+            "precision": 0.9090909090909091,
+            "recall": 0.25,
+            "f1-score": 0.39215686274509803,
+            "support": 120.0
+          },
+          "Personal Care": {
+            "precision": 0.8677685950413223,
+            "recall": 0.875,
+            "f1-score": 0.8713692946058091,
+            "support": 120.0
+          },
+          "accuracy": 0.7633333333333333,
+          "macro avg": {
+            "precision": 0.8121227725264392,
+            "recall": 0.7633333333333333,
+            "f1-score": 0.7422161671003631,
+            "support": 600.0
+          },
+          "weighted avg": {
+            "precision": 0.8121227725264392,
+            "recall": 0.7633333333333333,
+            "f1-score": 0.742216167100363,
+            "support": 600.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            100,
+            12,
+            0,
+            1,
+            7
+          ],
+          [
+            5,
+            110,
+            1,
+            1,
+            3
+          ],
+          [
+            7,
+            0,
+            113,
+            0,
+            0
+          ],
+          [
+            64,
+            19,
+            1,
+            30,
+            6
+          ],
+          [
+            12,
+            2,
+            0,
+            1,
+            105
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.8333333333333334,
+            "precision": 0.5319148936170213,
+            "recall": 0.8333333333333334,
+            "f1-score": 0.6493506493506493,
+            "support": 120
+          },
+          "Apparel": {
+            "accuracy": 0.9166666666666666,
+            "precision": 0.7692307692307693,
+            "recall": 0.9166666666666666,
+            "f1-score": 0.8365019011406845,
+            "support": 120
+          },
+          "Footwear": {
+            "accuracy": 0.9416666666666667,
+            "precision": 0.9826086956521739,
+            "recall": 0.9416666666666667,
+            "f1-score": 0.9617021276595744,
+            "support": 120
+          },
+          "Free Items": {
+            "accuracy": 0.25,
+            "precision": 0.9090909090909091,
+            "recall": 0.25,
+            "f1-score": 0.39215686274509803,
+            "support": 120
+          },
+          "Personal Care": {
+            "accuracy": 0.875,
+            "precision": 0.8677685950413223,
+            "recall": 0.875,
+            "f1-score": 0.8713692946058091,
+            "support": 120
+          }
+        }
+      },
+      "timestamp": "2025-07-07T04:56:43.257540"
+    },
+    {
+      "epoch": 8,
+      "train": {
+        "loss": 0.16777416208138068,
+        "overall_accuracy": 0.945,
+        "macro_precision": 0.9496249183038653,
+        "macro_recall": 0.945544802922867,
+        "macro_f1": 0.9465840940271558,
+        "weighted_precision": 0.9471957299706042,
+        "weighted_recall": 0.945,
+        "weighted_f1": 0.9450692918897441,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.8633217993079585,
+            "recall": 0.943289224952741,
+            "f1-score": 0.9015356820234869,
+            "support": 529.0
+          },
+          "Apparel": {
+            "precision": 0.9651416122004357,
+            "recall": 0.9486081370449678,
+            "f1-score": 0.9568034557235421,
+            "support": 467.0
+          },
+          "Footwear": {
+            "precision": 0.9889135254988913,
+            "recall": 0.9977628635346756,
+            "f1-score": 0.9933184855233853,
+            "support": 447.0
+          },
+          "Free Items": {
+            "precision": 0.9715639810426541,
+            "recall": 0.8649789029535865,
+            "f1-score": 0.9151785714285714,
+            "support": 474.0
+          },
+          "Personal Care": {
+            "precision": 0.9591836734693877,
+            "recall": 0.9730848861283644,
+            "f1-score": 0.9660842754367934,
+            "support": 483.0
+          },
+          "accuracy": 0.945,
+          "macro avg": {
+            "precision": 0.9496249183038653,
+            "recall": 0.945544802922867,
+            "f1-score": 0.9465840940271558,
+            "support": 2400.0
+          },
+          "weighted avg": {
+            "precision": 0.9471957299706042,
+            "recall": 0.945,
+            "f1-score": 0.9450692918897441,
+            "support": 2400.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            499,
+            8,
+            2,
+            11,
+            9
+          ],
+          [
+            14,
+            443,
+            2,
+            0,
+            8
+          ],
+          [
+            0,
+            1,
+            446,
+            0,
+            0
+          ],
+          [
+            56,
+            4,
+            1,
+            410,
+            3
+          ],
+          [
+            9,
+            3,
+            0,
+            1,
+            470
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.943289224952741,
+            "precision": 0.8633217993079585,
+            "recall": 0.943289224952741,
+            "f1-score": 0.9015356820234869,
+            "support": 529
+          },
+          "Apparel": {
+            "accuracy": 0.9486081370449678,
+            "precision": 0.9651416122004357,
+            "recall": 0.9486081370449678,
+            "f1-score": 0.9568034557235421,
+            "support": 467
+          },
+          "Footwear": {
+            "accuracy": 0.9977628635346756,
+            "precision": 0.9889135254988913,
+            "recall": 0.9977628635346756,
+            "f1-score": 0.9933184855233853,
+            "support": 447
+          },
+          "Free Items": {
+            "accuracy": 0.8649789029535865,
+            "precision": 0.9715639810426541,
+            "recall": 0.8649789029535865,
+            "f1-score": 0.9151785714285714,
+            "support": 474
+          },
+          "Personal Care": {
+            "accuracy": 0.9730848861283644,
+            "precision": 0.9591836734693877,
+            "recall": 0.9730848861283644,
+            "f1-score": 0.9660842754367934,
+            "support": 483
+          }
+        }
+      },
+      "val": {
+        "loss": 0.5376941143348813,
+        "overall_accuracy": 0.7916666666666666,
+        "macro_precision": 0.8343852266533857,
+        "macro_recall": 0.7916666666666667,
+        "macro_f1": 0.7875358637059428,
+        "weighted_precision": 0.8343852266533857,
+        "weighted_recall": 0.7916666666666666,
+        "weighted_f1": 0.7875358637059428,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.5376884422110553,
+            "recall": 0.8916666666666667,
+            "f1-score": 0.670846394984326,
+            "support": 120.0
+          },
+          "Apparel": {
+            "precision": 0.918918918918919,
+            "recall": 0.85,
+            "f1-score": 0.8831168831168831,
+            "support": 120.0
+          },
+          "Footwear": {
+            "precision": 1.0,
+            "recall": 0.9416666666666667,
+            "f1-score": 0.9699570815450643,
+            "support": 120.0
+          },
+          "Free Items": {
+            "precision": 0.8392857142857143,
+            "recall": 0.39166666666666666,
+            "f1-score": 0.5340909090909091,
+            "support": 120.0
+          },
+          "Personal Care": {
+            "precision": 0.8760330578512396,
+            "recall": 0.8833333333333333,
+            "f1-score": 0.8796680497925311,
+            "support": 120.0
+          },
+          "accuracy": 0.7916666666666666,
+          "macro avg": {
+            "precision": 0.8343852266533857,
+            "recall": 0.7916666666666667,
+            "f1-score": 0.7875358637059428,
+            "support": 600.0
+          },
+          "weighted avg": {
+            "precision": 0.8343852266533857,
+            "recall": 0.7916666666666666,
+            "f1-score": 0.7875358637059428,
+            "support": 600.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            107,
+            3,
+            0,
+            5,
+            5
+          ],
+          [
+            10,
+            102,
+            0,
+            3,
+            5
+          ],
+          [
+            7,
+            0,
+            113,
+            0,
+            0
+          ],
+          [
+            64,
+            4,
+            0,
+            47,
+            5
+          ],
+          [
+            11,
+            2,
+            0,
+            1,
+            106
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.8916666666666667,
+            "precision": 0.5376884422110553,
+            "recall": 0.8916666666666667,
+            "f1-score": 0.670846394984326,
+            "support": 120
+          },
+          "Apparel": {
+            "accuracy": 0.85,
+            "precision": 0.918918918918919,
+            "recall": 0.85,
+            "f1-score": 0.8831168831168831,
+            "support": 120
+          },
+          "Footwear": {
+            "accuracy": 0.9416666666666667,
+            "precision": 1.0,
+            "recall": 0.9416666666666667,
+            "f1-score": 0.9699570815450643,
+            "support": 120
+          },
+          "Free Items": {
+            "accuracy": 0.39166666666666666,
+            "precision": 0.8392857142857143,
+            "recall": 0.39166666666666666,
+            "f1-score": 0.5340909090909091,
+            "support": 120
+          },
+          "Personal Care": {
+            "accuracy": 0.8833333333333333,
+            "precision": 0.8760330578512396,
+            "recall": 0.8833333333333333,
+            "f1-score": 0.8796680497925311,
+            "support": 120
+          }
+        }
+      },
+      "timestamp": "2025-07-07T05:04:50.555003"
+    },
+    {
+      "epoch": 9,
+      "train": {
+        "loss": 0.11712121563284503,
+        "overall_accuracy": 0.96875,
+        "macro_precision": 0.9693869036669749,
+        "macro_recall": 0.9694550143878151,
+        "macro_f1": 0.9687379774011766,
+        "weighted_precision": 0.97050701786186,
+        "weighted_recall": 0.96875,
+        "weighted_f1": 0.9689541723258708,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.891566265060241,
+            "recall": 0.9779735682819384,
+            "f1-score": 0.9327731092436975,
+            "support": 454.0
+          },
+          "Apparel": {
+            "precision": 0.9897540983606558,
+            "recall": 0.971830985915493,
+            "f1-score": 0.9807106598984772,
+            "support": 497.0
+          },
+          "Footwear": {
+            "precision": 1.0,
+            "recall": 0.9938271604938271,
+            "f1-score": 0.9969040247678018,
+            "support": 486.0
+          },
+          "Free Items": {
+            "precision": 0.9850107066381156,
+            "recall": 0.9145129224652088,
+            "f1-score": 0.9484536082474226,
+            "support": 503.0
+          },
+          "Personal Care": {
+            "precision": 0.9806034482758621,
+            "recall": 0.9891304347826086,
+            "f1-score": 0.9848484848484849,
+            "support": 460.0
+          },
+          "accuracy": 0.96875,
+          "macro avg": {
+            "precision": 0.9693869036669749,
+            "recall": 0.9694550143878151,
+            "f1-score": 0.9687379774011766,
+            "support": 2400.0
+          },
+          "weighted avg": {
+            "precision": 0.97050701786186,
+            "recall": 0.96875,
+            "f1-score": 0.9689541723258708,
+            "support": 2400.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            444,
+            1,
+            0,
+            6,
+            3
+          ],
+          [
+            12,
+            483,
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            483,
+            0,
+            0
+          ],
+          [
+            38,
+            0,
+            0,
+            460,
+            5
+          ],
+          [
+            3,
+            2,
+            0,
+            0,
+            455
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.9779735682819384,
+            "precision": 0.891566265060241,
+            "recall": 0.9779735682819384,
+            "f1-score": 0.9327731092436975,
+            "support": 454
+          },
+          "Apparel": {
+            "accuracy": 0.971830985915493,
+            "precision": 0.9897540983606558,
+            "recall": 0.971830985915493,
+            "f1-score": 0.9807106598984772,
+            "support": 497
+          },
+          "Footwear": {
+            "accuracy": 0.9938271604938271,
+            "precision": 1.0,
+            "recall": 0.9938271604938271,
+            "f1-score": 0.9969040247678018,
+            "support": 486
+          },
+          "Free Items": {
+            "accuracy": 0.9145129224652088,
+            "precision": 0.9850107066381156,
+            "recall": 0.9145129224652088,
+            "f1-score": 0.9484536082474226,
+            "support": 503
+          },
+          "Personal Care": {
+            "accuracy": 0.9891304347826086,
+            "precision": 0.9806034482758621,
+            "recall": 0.9891304347826086,
+            "f1-score": 0.9848484848484849,
+            "support": 460
+          }
+        }
+      },
+      "val": {
+        "loss": 0.5052397715300322,
+        "overall_accuracy": 0.8366666666666667,
+        "macro_precision": 0.869020251374323,
+        "macro_recall": 0.8366666666666667,
+        "macro_f1": 0.8361988712754835,
+        "weighted_precision": 0.869020251374323,
+        "weighted_recall": 0.8366666666666667,
+        "weighted_f1": 0.8361988712754835,
+        "per_class_report": {
+          "Accessories": {
+            "precision": 0.6132596685082873,
+            "recall": 0.925,
+            "f1-score": 0.7375415282392026,
+            "support": 120.0
+          },
+          "Apparel": {
+            "precision": 0.905982905982906,
+            "recall": 0.8833333333333333,
+            "f1-score": 0.8945147679324894,
+            "support": 120.0
+          },
+          "Footwear": {
+            "precision": 0.991304347826087,
+            "recall": 0.95,
+            "f1-score": 0.9702127659574468,
+            "support": 120.0
+          },
+          "Free Items": {
+            "precision": 0.9285714285714286,
+            "recall": 0.5416666666666666,
+            "f1-score": 0.6842105263157895,
+            "support": 120.0
+          },
+          "Personal Care": {
+            "precision": 0.905982905982906,
+            "recall": 0.8833333333333333,
+            "f1-score": 0.8945147679324894,
+            "support": 120.0
+          },
+          "accuracy": 0.8366666666666667,
+          "macro avg": {
+            "precision": 0.869020251374323,
+            "recall": 0.8366666666666667,
+            "f1-score": 0.8361988712754835,
+            "support": 600.0
+          },
+          "weighted avg": {
+            "precision": 0.869020251374323,
+            "recall": 0.8366666666666667,
+            "f1-score": 0.8361988712754835,
+            "support": 600.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            111,
+            4,
+            0,
+            1,
+            4
+          ],
+          [
+            7,
+            106,
+            1,
+            3,
+            3
+          ],
+          [
+            6,
+            0,
+            114,
+            0,
+            0
+          ],
+          [
+            47,
+            4,
+            0,
+            65,
+            4
+          ],
+          [
+            10,
+            3,
+            0,
+            1,
+            106
+          ]
+        ],
+        "fairness_metrics": {
+          "Accessories": {
+            "accuracy": 0.925,
+            "precision": 0.6132596685082873,
+            "recall": 0.925,
+            "f1-score": 0.7375415282392026,
+            "support": 120
+          },
+          "Apparel": {
+            "accuracy": 0.8833333333333333,
+            "precision": 0.905982905982906,
+            "recall": 0.8833333333333333,
+            "f1-score": 0.8945147679324894,
+            "support": 120
+          },
+          "Footwear": {
+            "accuracy": 0.95,
+            "precision": 0.991304347826087,
+            "recall": 0.95,
+            "f1-score": 0.9702127659574468,
+            "support": 120
+          },
+          "Free Items": {
+            "accuracy": 0.5416666666666666,
+            "precision": 0.9285714285714286,
+            "recall": 0.5416666666666666,
+            "f1-score": 0.6842105263157895,
+            "support": 120
+          },
+          "Personal Care": {
+            "accuracy": 0.8833333333333333,
+            "precision": 0.905982905982906,
+            "recall": 0.8833333333333333,
+            "f1-score": 0.8945147679324894,
+            "support": 120
+          }
+        }
+      },
+      "timestamp": "2025-07-07T05:12:55.842639"
+    }
+  ],
+  "validation": [],
+  "test": null,
+  "ethical_checks": {
+    "class_balance": {},
+    "bias_analysis": {},
+    "fairness_metrics": {}
+  }
+}

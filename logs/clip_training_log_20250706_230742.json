@@ -1,0 +1,74 @@
+{
+  "config": {
+    "model_name": "CLIPForImageClassification",
+    "base_model_id": "openai/clip-vit-base-patch32",
+    "num_classes": 5,
+    "batch_size": 8,
+    "epochs": 10,
+    "learning_rate": 2e-05,
+    "device": "cpu",
+    "class_mapping": {
+      "Accessories": 0,
+      "Apparel": 1,
+      "Footwear": 2,
+      "Free Items": 3,
+      "Personal Care": 4
+    },
+    "dataset_info": {
+      "total_original_csv_entries": 44424,
+      "selected_categories_original_counts": {
+        "Accessories": 11274,
+        "Apparel": 21397,
+        "Footwear": 9219,
+        "Free Items": 105,
+        "Personal Care": 2403
+      },
+      "target_samples_per_class": 200,
+      "total_samples_after_augmentation": 1000,
+      "training_samples": 800,
+      "validation_samples": 200,
+      "augmentation_applied": {
+        "Apparel": {
+          "original": 21397,
+          "augmented_added": 0,
+          "total_after_aug": 200
+        },
+        "Accessories": {
+          "original": 11274,
+          "augmented_added": 0,
+          "total_after_aug": 200
+        },
+        "Footwear": {
+          "original": 9219,
+          "augmented_added": 0,
+          "total_after_aug": 200
+        },
+        "Personal Care": {
+          "original": 2403,
+          "augmented_added": 0,
+          "total_after_aug": 200
+        },
+        "Free Items": {
+          "original": 105,
+          "augmented_added": 95,
+          "total_after_aug": 200
+        }
+      }
+    },
+    "ethical_considerations": {
+      "balanced_sampling": true,
+      "stratified_split": true,
+      "data_augmentation_for_imbalance": true,
+      "fairness_metrics_tracked": true
+    },
+    "data_augmentation_transforms": "Compose(\n    RandomResizedCrop(size=(224, 224), scale=(0.8, 1.0), ratio=(0.75, 1.3333), interpolation=bilinear, antialias=True)\n    RandomHorizontalFlip(p=0.5)\n    ColorJitter(brightness=(0.8, 1.2), contrast=(0.8, 1.2), saturation=(0.8, 1.2), hue=(-0.1, 0.1))\n    RandomRotation(degrees=[-15.0, 15.0], interpolation=nearest, expand=False, fill=0)\n)"
+  },
+  "training": [],
+  "validation": [],
+  "test": null,
+  "ethical_checks": {
+    "class_balance": {},
+    "bias_analysis": {},
+    "fairness_metrics": {}
+  }
+}

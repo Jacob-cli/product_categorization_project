@@ -1,0 +1,273 @@
+{
+    "config": {
+        "model_name": "microsoft/git-base",
+        "num_epochs": 10,
+        "batch_size": 8,
+        "learning_rate": 2e-05,
+        "target_samples_per_class": 600,
+        "total_images": 3000,
+        "train_samples": 2400,
+        "val_samples": 600,
+        "device": "cpu",
+        "patience": 3,
+        "pytorch_num_threads": 8
+    },
+    "epochs": [
+        {
+            "epoch": 1,
+            "training_summary": {
+                "overall_loss": 0.41144633329783875,
+                "overall_accuracy": 0.8483333333333334,
+                "macro_f1": 0.8495903709692474,
+                "per_class_f1": {
+                    "Accessories": 0.7463837994214079,
+                    "Apparel": 0.9168443496801706,
+                    "Footwear": 0.955067920585162,
+                    "Free Items": 0.7091891891891892,
+                    "Personal Care": 0.9204665959703076
+                }
+            },
+            "validation_summary": {
+                "overall_loss": 0.21296449025472006,
+                "overall_accuracy": 0.9183333333333333,
+                "macro_f1": 0.9164864601816612,
+                "per_class_f1": {
+                    "Accessories": 0.784688995215311,
+                    "Apparel": 0.979253112033195,
+                    "Footwear": 1.0,
+                    "Free Items": 0.8432835820895522,
+                    "Personal Care": 0.9752066115702479
+                },
+                "confusion_matrix": [
+                    [
+                        82,
+                        3,
+                        0,
+                        32,
+                        3
+                    ],
+                    [
+                        0,
+                        118,
+                        0,
+                        2,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        120,
+                        0,
+                        0
+                    ],
+                    [
+                        6,
+                        0,
+                        0,
+                        113,
+                        1
+                    ],
+                    [
+                        1,
+                        0,
+                        0,
+                        1,
+                        118
+                    ]
+                ]
+            }
+        },
+        {
+            "epoch": 2,
+            "training_summary": {
+                "overall_loss": 0.24175680311842976,
+                "overall_accuracy": 0.9179166666666667,
+                "macro_f1": 0.9184365366441609,
+                "per_class_f1": {
+                    "Accessories": 0.8331726133076182,
+                    "Apparel": 0.9720670391061452,
+                    "Footwear": 0.9970326409495549,
+                    "Free Items": 0.8122270742358079,
+                    "Personal Care": 0.9776833156216791
+                }
+            },
+            "validation_summary": {
+                "overall_loss": 0.37839474859957895,
+                "overall_accuracy": 0.895,
+                "macro_f1": 0.8952730103231985,
+                "per_class_f1": {
+                    "Accessories": 0.7768595041322314,
+                    "Apparel": 0.8888888888888888,
+                    "Footwear": 0.99581589958159,
+                    "Free Items": 0.8470588235294118,
+                    "Personal Care": 0.967741935483871
+                },
+                "confusion_matrix": [
+                    [
+                        94,
+                        0,
+                        0,
+                        22,
+                        4
+                    ],
+                    [
+                        16,
+                        96,
+                        0,
+                        5,
+                        3
+                    ],
+                    [
+                        1,
+                        0,
+                        119,
+                        0,
+                        0
+                    ],
+                    [
+                        11,
+                        0,
+                        0,
+                        108,
+                        1
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        120
+                    ]
+                ]
+            }
+        },
+        {
+            "epoch": 3,
+            "training_summary": {
+                "overall_loss": 0.29703536224124644,
+                "overall_accuracy": 0.9004166666666666,
+                "macro_f1": 0.8978126172926906,
+                "per_class_f1": {
+                    "Accessories": 0.7969598262757872,
+                    "Apparel": 0.948118006103764,
+                    "Footwear": 0.9766497461928934,
+                    "Free Items": 0.8300220750551877,
+                    "Personal Care": 0.9373134328358209
+                }
+            },
+            "validation_summary": {
+                "overall_loss": 0.3028288859097908,
+                "overall_accuracy": 0.9183333333333333,
+                "macro_f1": 0.9157702085901918,
+                "per_class_f1": {
+                    "Accessories": 0.8095238095238095,
+                    "Apparel": 0.9285714285714286,
+                    "Footwear": 0.9834710743801653,
+                    "Free Items": 0.8949416342412452,
+                    "Personal Care": 0.9623430962343096
+                },
+                "confusion_matrix": [
+                    [
+                        85,
+                        11,
+                        2,
+                        19,
+                        3
+                    ],
+                    [
+                        0,
+                        117,
+                        0,
+                        3,
+                        0
+                    ],
+                    [
+                        0,
+                        1,
+                        119,
+                        0,
+                        0
+                    ],
+                    [
+                        3,
+                        1,
+                        0,
+                        115,
+                        1
+                    ],
+                    [
+                        2,
+                        2,
+                        1,
+                        0,
+                        115
+                    ]
+                ]
+            }
+        },
+        {
+            "epoch": 4,
+            "training_summary": {
+                "overall_loss": 0.14602338567589565,
+                "overall_accuracy": 0.9579166666666666,
+                "macro_f1": 0.9586563135247725,
+                "per_class_f1": {
+                    "Accessories": 0.9083503054989817,
+                    "Apparel": 0.9857723577235772,
+                    "Footwear": 0.9967213114754099,
+                    "Free Items": 0.9216683621566633,
+                    "Personal Care": 0.9807692307692307
+                }
+            },
+            "validation_summary": {
+                "overall_loss": 0.3114732730357597,
+                "overall_accuracy": 0.915,
+                "macro_f1": 0.9102456534364919,
+                "per_class_f1": {
+                    "Accessories": 0.7715736040609137,
+                    "Apparel": 0.9266409266409267,
+                    "Footwear": 0.9874476987447699,
+                    "Free Items": 0.8905660377358491,
+                    "Personal Care": 0.975
+                },
+                "confusion_matrix": [
+                    [
+                        76,
+                        16,
+                        1,
+                        25,
+                        2
+                    ],
+                    [
+                        0,
+                        120,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        2,
+                        118,
+                        0,
+                        0
+                    ],
+                    [
+                        1,
+                        0,
+                        0,
+                        118,
+                        1
+                    ],
+                    [
+                        0,
+                        1,
+                        0,
+                        2,
+                        117
+                    ]
+                ]
+            }
+        }
+    ]
+}

@@ -5,7 +5,7 @@ import torch
 import json
 from datetime import datetime
 from torch.utils.data import Dataset, DataLoader, WeightedRandomSampler
-from transformers import AutoProcessor, AutoModelForVision2Seq  # For BLIP
+from transformers import AutoProcessor, AutoModelForVision2Seq, BlipForConditionalGeneration # Ensure BlipForConditionalGeneration is imported
 from torch.optim import AdamW
 from torch.optim.lr_scheduler import OneCycleLR
 from sklearn.model_selection import train_test_split
@@ -17,6 +17,37 @@ import torchvision.transforms as T  # For data augmentation
 import random  # For random sampling for augmentation
 import traceback  # For detailed error logging
 from tqdm import tqdm  # For progress bars
+
+class BLIPClassificationModel(torch.nn.Module):
+    def __init__(self, base_model_id, num_classes):
+        super().__init__()
+        self.blip = BlipForConditionalGeneration.from_pretrained(base_model_id)
+        # Assuming you want to use the pooled output or a specific hidden state for classification
+        # You might need to adjust this based on how you want to extract features from BLIP
+        # For simplicity, we'll add a linear layer on top of the vision model's output features
+        # or adapt if you're using text generation as a proxy for classification.
+        # Given the previous context was classification, let's assume a classification head.
+
+        # BLIPForConditionalGeneration does not directly give a pooled output like CLIP for classification.
+        # We need to adapt it. A common way is to extract features from its vision encoder.
+        # For a true classification task with BLIP, you often fine-tune the vision encoder
+        # and attach a classification head to its output, or use its image-text matching
+        # capabilities in a zero-shot/few-shot manner.
+
+        # For fine-tuning BLIP for classification, you typically take the output of the
+        # vision encoder and pass it through a linear classification layer.
+        # Let's get the hidden size of the vision model.
+        # Access the vision model directly
+        self.vision_model_hidden_size = self.blip.vision_model.config.hidden_size
+        self.classifier = torch.nn.Linear(self.vision_model_hidden_size, num_classes)
+
+    def forward(self, pixel_values, **kwargs):
+        # Pass pixel values through the vision model
+        vision_outputs = self.blip.vision_model(pixel_values=pixel_values)
+        # Use the pooled output (first token, often used for classification in ViT-like models)
+        image_embeds = vision_outputs.pooler_output
+        logits = self.classifier(image_embeds)
+        return {"logits": logits}
 
 # --- Configuration and Paths ---
 # Log and Model Save Directories

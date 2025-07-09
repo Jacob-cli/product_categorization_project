@@ -9,48 +9,62 @@ __pycache__/
 .vscode/
 *.iml
 
-# Model weights / checkpoints
+# Model weights / checkpoints (excluded)
 *.pt
 *.pth
 *.ckpt
 *.bin
 
-# HF dataset cache & arrow files
+# HuggingFace and arrow
 *.arrow
 *.jsonl
 *.zip
 *.tar.gz
 
-# Local library builds
+# Build outputs
 *.lib
 *.dll
 
-# Data files
-data/
-outputs/
+# Local Datasets
+# Ignore raw data except 'samples/' and 'styles.csv'
+data/raw/*
+!data/raw/myntra_fashion_products/samples/
+!data/raw/myntra_fashion_products/styles.csv
+
+data/outputs/
 dataset/
 *.csv
 *.tsv
 *.xlsx
 
-# Jupyter notebook checkpoints
-.ipynb_checkpoints/
+# Python environments
+.venv/
+env/
+venv/
+.Python
+.env
+*.env
 
-# OS files
+# Notebook and system files
+.ipynb_checkpoints/
 .DS_Store
 Thumbs.db
 
+# Training artifacts to exclude
+trained_models_blip/
+trained_models_clip/
+trained_models_git/
 
-# Dataset
-data/
+# Clean logs automatically (if too large)
+logs/*.txt
 
-# Python environment
-venv/
-.venv/
-__pycache__/
-*.pyc
-*.pyd
-*.pyo
+!logs/
+!results/
+!data/processed/processed_balanced_dataset/*.json
+!data/samples/
 
-logs/
-
+!.gitignore
+!requirements.txt
+!README.md
+!images.txt
+!scripts/
